@@ -18,6 +18,10 @@
 #}
 
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="text/css" rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+  media="all">
 {% import 'appbuilder/general/lib.html' as lib %}
 {% from 'superset/partials/asset_bundle.html' import css_bundle, js_bundle with context %}
 
@@ -62,12 +66,13 @@
       id="csrf_token"
       value="{{ csrf_token() if csrf_token else '' }}"
     >
+    <!-- oculto cosas y cargo css -->
+    {% if '/superset/dashboard/' in request.url or current_user.is_anonymous %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
       integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/ar-poncho/dist/css/poncho.min.css">
     <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/ar-poncho/dist/css/argentina.css">
     <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/ar-poncho/dist/icono-arg.css">
-    {% if '/superset/dashboard/' in request.url or current_user.is_anonymous %}
     <style>
       #main-menu {
         display: none;
@@ -89,6 +94,13 @@
       }
     </style>
     {% endif %}
+  {% if current_user.is_anonymous %}
+  <style>
+    #save-dash-split-button {
+      display: none;
+    }
+  </style>
+  {% endif %}
   </head>
 
   <body {% if standalone_mode %}class="standalone"{% endif %}>
@@ -99,8 +111,7 @@
           <div>
             <div class="navbar-header"> <a class="navbar-brand" href="https://argentina.gob.ar"
                 aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar"
-                  src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob-2.svg" height="50"
-                  width="236"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
+                  src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob-2.svg" height="50" width="254"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
                 href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a
                 class="btn bg-white btn-login visible-xs" href="#"
                 onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
@@ -140,7 +151,7 @@
           <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
               <h1>Mapa de Inversión Social</h1>
-              <p>Accede de manera interactiva a información sobre los principales programas que implementa el Ministerio de Desarrollo Social.</p>
+              <p>Accede de manera interactiva a información sobre los principales programas que implementa el Ministerio.</p>
             </div>
           </div>
         </div>
@@ -204,24 +215,78 @@
       {% include "tail_js_custom_extra.html" %}
     {% endblock %}
     {% if '/superset/dashboard/' in request.url %}
-    <section class="modulo-contacto">
-      <div class="container">
-        <div class="text-right">
-            <strong>Desarrollado con <a href="https://superset.apache.org">Apache Superset</a></strong><br>
-            <strong> <a href="mailto:datosabiertos@desarrollosocial.gob.ar">Contactanos</a></strong>
-          </p>
+    <div class="container">
+      <div class="alert alert-info">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-question-circle fa-fw fa-4x"></i>
+          </div>
+          <div class="media-body">
+            <h5>¿Necesitás ayuda?</h5>
+            <p class="margin-0">Podés ver una guía de uso del sitio <a target="_blank" href="https://github.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/blob/main/README.md#c%C3%B3mo-se-navega-el-mapa-de-inversi%C3%B3n-social">en este enlace</a></p>
+          </div>
         </div>
       </div>
-    </section>
-    <footer>
+    </div>
+    <footer class="main-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <div class="region region-footer1">
+              <section id="block-menu-menu-footer-1" class="block block-menu clearfix">
+                <h2 class="block-title h3 section-title h3 section-title">Trámites</h2>
+                <ul class="menu nav">
+                  <li class="first leaf"><a href="https://argentina.gob.ar/turnos">Turnos</a></li>
+                  <li class="leaf"><a
+                      href="https://argentina.gob.ar/jefatura/innovacion-publica/innovacion-administrativa/tramites-distancia-tad">Trámites
+                      a distancia</a></li>
+                  <li class="last leaf"><a href="https://argentina.gob.ar/miargentina/mesadeayuda">Atención a la
+                      ciudadanía</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="region region-footer2">
+              <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
+                <h2 class="block-title h3 section-title h3 section-title">Acerca de la República Argentina</h2>
+                <ul class="menu nav">
+                  <li class="first leaf"><a href="https://argentina.gob.ar/pais">Nuestro país</a></li>
+                  <li class="leaf"><a href="https://argentina.gob.ar/normativa">Leyes argentinas</a></li>
+                  <li class="leaf"><a href="https://argentina.gob.ar/organismos">Organismos</a></li>
+                  <li class="last leaf"><a href="https://argentina.gob.ar/jefatura/mapa-del-estado">Mapa del Estado</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="region region-footer3">
+              <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
+                <h2 class="block-title h3 section-title h3 section-title">Acerca de Argentina.gob.ar</h2>
+                <ul class="menu nav">
+                  <li class="first leaf"><a href="https://argentina.gob.ar/acerca">Acerca de este sitio</a></li>
+                  <li class="leaf"><a href="https://argentina.gob.ar/terminos-y-condiciones">Términos y condiciones</a></li>
+                  <li class="last leaf"><a href="https://argentina.gob.ar/sugerencias">Sugerencias</a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container-fluid">
         <div class="row sub-footer">
           <div class="container">
-            <div class="col-sm-6 m-y-1 p-x-0">
-              <img class="image-responsive" height="80"
-                src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/primerolagente.svg"
-                alt="Primero la gente" />
-            </div>
+            <div class="col-sm-6 m-y-1 p-x-0"> <img class="image-responsive" height="80" src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/primerolagente.svg"
+                alt="Primero la gente"></div>
+            <section class="modulo-contacto">
+              <div class="container">
+                <div class="text-right">
+                  <strong>Desarrollado con <a href="https://superset.apache.org">Apache Superset</a></strong><br>
+                  <strong> <a href="mailto:datosabiertos@desarrollosocial.gob.ar">Contactanos</a></strong>
+                  </p>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
