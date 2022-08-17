@@ -106,21 +106,50 @@
   <body {% if standalone_mode %}class="standalone"{% endif %}>
     {% if '/superset/dashboard/' in request.url or current_user.is_anonymous %}
     <header>
-      <nav class="navbar navbar-top navbar-default bg-celeste-argentina" role="navigation">
+      <nav class="navbar navbar-top navbar-default bg-celeste-argentina">
         <div class="container">
           <div>
-            <div class="navbar-header"> <a class="navbar-brand" href="https://argentina.gob.ar"
-                aria-label="Argentina.gob.ar Presidencia de la Nación"> <img alt="Argentina.gob.ar"
-                  src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/argentinagob-2.svg" height="50" width="254"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
-                href="/proyectos/mi-argentina/v3/"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a
-                class="btn bg-white btn-login visible-xs" href="#"
-                onclick="$('.navbar.navbar-top').addClass('state-search');"><span class="fa fa-search fa-fw"></span></a>
-            </div>
-            <div class="nav navbar-nav navbar-right hidden-xs">
-              <a href="#" onclick="$('.navbar.navbar-top').removeClass('state-search');"
-                class="btn btn-mi-argentina visible-xs"> <i class="fa fa-times"></i> </a>
-              <a href="https://mi.argentina.gob.ar/" class="dropdown-toggle btn btn-mi-argentina hidden-xs bg-white"
-                aria-label="Ingresar a Mi Argentina" data-toggle="dropdown"> miArgentina</a>
+            <div class="navbar-header"> <a class="navbar-brand" href="/" id="navbar-brand"
+                aria-label="Argentina.gob.ar Presidencia de la Nación"> <img
+                  src="https://argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo_argentina-blanco.svg"
+                  alt="Argentina.gob.ar" height="50" width="254"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
+                href="https://mi.argentina.gob.ar" aria-label="Ingresar a Mi Argentina"><i
+                  class="icono-arg-mi-argentina fa-fw"></i></a> <a
+                onclick="jQuery('.navbar.navbar-top').addClass('state-search');"
+                class="btn btn-mi-argentina btn-login visible-xs" href="#" aria-labelledby="edit-keys"><span
+                  class="fa fa-search fa-fw"></span></a></div>
+            <div class="nav navbar-nav navbar-right hidden-xs"> <a
+                onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+                class="btn btn-link btn-search-reset visible-xs">
+                <div class="fa fa-times"></div>
+              </a>
+              <div id="cd-login"> <a href="https://mi.argentina.gob.ar" id="btn-mi-argentina"
+                  class="btn btn-mi-argentina hidden-xs" aria-label="Ingresar a Mi Argentina">
+                  <div class="text-primary pull-left" style="margin-right: 8px;"></div>miArgentina
+                </a></div>
+              <div class="pull-left">
+                <form class="main-form" role="search" action="https://argentina.gob.ar/buscar" method="post"
+                  id="apachesolr-search-custom-page-search-form" accept-charset="UTF-8">
+                  <div><input type="hidden" name="form_build_id"
+                      value="form-zVFuN5LboXQue4GKlmadgBkqHs7SEPbWPI9_Wf_zVYY"><input type="hidden" name="form_id"
+                      value="apachesolr_search_custom_page_search_form">
+                    <div style="display:none;">
+                      <div class="form-item form-item-tarro-de-miel form-type-textfield form-group"> <label
+                          class="control-label" for="edit-tarro-de-miel">Dejar en blanco</label><input
+                          class="form-control form-text" type="text" id="edit-tarro-de-miel" name="tarro_de_miel" value=""
+                          size="60" maxlength="128"></div>
+                    </div>
+                    <div class="input-group"> <label class="sr-only" for="edit-keys">Buscar en el sitio</label><input
+                        placeholder="Buscar trámites, servicios o áreas" id="edit-keys"
+                        class="input-search form-control form-text" aria-label="Buscar trámites, servicios o áreas"
+                        type="text" name="keys" value="" size="20" maxlength="255"><span class="input-group-btn"><button
+                          class="bg-white btn-search-reset btn btn-default form-submit" aria-labelledby="edit-keys"
+                          aria-label="Buscar" type="submit" id="edit-submit" name="op"
+                          value="<i class=&quot;fa fa-search text-primary&quot;></i>"><i
+                            class="fa fa-search text-primary"></i></button></span></div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
