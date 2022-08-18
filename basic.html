@@ -74,6 +74,13 @@
     <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/ar-poncho/dist/css/argentina.css">
     <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/ar-poncho/dist/icono-arg.css">
     <style>
+      body, html {
+          font-size: 16px!important;
+          height: 100%!important;
+          max-width: 100%!important;
+          font-weight: 500!important;
+          background: #fff!important;
+      }
       #main-menu {
         display: none;
       }
@@ -92,6 +99,11 @@
       .anchor-link-container .btn {
           border: none !important;
       }
+      .row-centered > div {
+          display: flex;
+          justify-content: center;
+          float: none;
+      }
     </style>
     {% endif %}
   {% if current_user.is_anonymous %}
@@ -109,7 +121,7 @@
       <nav class="navbar navbar-top navbar-default bg-celeste-argentina">
         <div class="container">
           <div>
-            <div class="navbar-header"> <a class="navbar-brand" href="/" id="navbar-brand"
+            <div class="navbar-header"> <a class="navbar-brand" href="https://argentina.gob.ar" id="navbar-brand"
                 aria-label="Argentina.gob.ar Presidencia de la Nación"> <img
                   src="https://argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo_argentina-blanco.svg"
                   alt="Argentina.gob.ar" height="50" width="254"> </a> <a class="btn btn-mi-argentina btn-login visible-xs"
@@ -180,7 +192,7 @@
           <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
               <h1>Mapa de Inversión Social</h1>
-              <p>Accede de manera interactiva a información sobre los principales programas que implementa el Ministerio.</p>
+              <p>Accedé de manera interactiva a información sobre los principales programas que implementa el Ministerio.</p>
             </div>
           </div>
         </div>
@@ -245,14 +257,19 @@
     {% endblock %}
     {% if '/superset/dashboard/' in request.url %}
     <div class="container">
-      <div class="alert alert-info">
-        <div class="media">
-          <div class="media-left">
-            <i class="fa fa-question-circle fa-fw fa-4x"></i>
-          </div>
-          <div class="media-body">
-            <h5>¿Necesitás ayuda?</h5>
-            <p class="margin-0">Podés ver una guía de uso del sitio <a target="_blank" href="https://github.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/blob/main/README.md#c%C3%B3mo-se-navega-el-mapa-de-inversi%C3%B3n-social">en este enlace</a></p>
+      <div class="row row-centered">
+        <div class="col-md-12 col-sm-12">
+          <div class="alert alert-info">
+            <div class="media">
+              <div class="media-left">
+                <i class="fa fa-question-circle fa-fw fa-4x"></i>
+              </div>
+              <div class="media-body">
+                <h5>¿Necesitás ayuda?</h5>
+                <p class="margin-0">Consultá la <a target="_blank"
+                  href="https://github.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/blob/main/README.md#c%C3%B3mo-se-navega-el-mapa-de-inversi%C3%B3n-social">guía de uso</a> para saber cómo navegar los contenidos</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
