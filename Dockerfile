@@ -61,6 +61,7 @@ COPY ./superset/docker/frontend-mem-nag.sh /
 COPY ./superset/superset-frontend /app/superset-frontend
 COPY ./mapa-arg/countries.ts /app/superset-frontend/plugins/legacy-plugin-chart-country-map/src/countries.ts
 COPY ./mapa-arg/argentina.geojson /app/superset-frontend/plugins/legacy-plugin-chart-country-map/src/countries/argentina.geojson
+COPY ./mapa-arg/amba.geojson /app/superset-frontend/plugins/legacy-plugin-chart-country-map/src/countries/amba.geojson
 
 
 # custom images
