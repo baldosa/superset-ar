@@ -667,7 +667,7 @@ under the License.
             <div class="container">
               <div class="text-right">
                 <strong>Desarrollado con <a href="https://superset.apache.org">Apache Superset</a></strong><br>
-                <strong> <a href="mailto:datosabiertos@desarrollosocial.gob.ar">Contactanos</a></strong>
+                <strong> <a href="mailto:datosabiertos@desarrollosocial.gob.ar">Contactanos</a></strong><br>
                 <strong> <a href="https://reportes.mds.gob.ar/login/">Iniciar sesión</a></strong>
                 </p>
               </div>
@@ -678,59 +678,7 @@ under the License.
     </div>
   </footer>
   {% endif %}
-<!-- login check -->
-<script>
-  const CLOSE_IFRAMES_MESSAGE = "closeIframes";
-  const iframeId = "superset-login";
-  window.addEventListener("DOMContentLoaded", function () {
-    const windowIsIframe = !(window === window.parent);
-    if (location.hash == "#close_after_loading" && windowIsIframe)
-      window.parent.postMessage(CLOSE_IFRAMES_MESSAGE);
-    else {
-      window.addEventListener("message", (event) => {
-        document
-          .querySelectorAll(`iframe[id='${iframeId}']`)
-          .forEach(element => document.body.removeChild(element));
-      }, false);
 
-      if (window.location.pathname.indexOf("sqllab") >= 0) {
-        setInterval(() => {
-          const loginUrl = `/login?next=${window.location.pathname + window.location.search}`;
-          fetch(loginUrl)
-            .then(response => {
-              const iframeSrcWithinDomain = response.url.indexOf(location.host) >= 0; // can't load iframes with sources outside of the current domain
-              if (iframeSrcWithinDomain) {
-                const iframe = document.createElement('iframe');
-                iframe.id = iframeId;
-                iframe.src = `${loginUrl}#close_after_loading`;
-                iframe.style = `
-                  position: fixed;
-                  top: 0px;
-                  bottom: 0px;
-                  right: 0px;
-                  width: 100%;
-                  border: none;
-                  margin: 0;
-                  padding: 0;
-                  overflow: hidden;
-                  z-index: 999999;
-                  height: 100%;`;
-                document
-                  .querySelectorAll(`iframe[id='${iframeId}']`)
-                  .forEach(element => document.body.removeChild(element));
-                document.body.appendChild(iframe);
-              } else {
-                window.location.href = loginUrl;
-              }
-            })
-            .catch(_ => {
-              window.location.href = loginUrl;
-            });
-        }, 30000);
-      }
-    }
-  });
-</script>
 </body>
 
 </html>
