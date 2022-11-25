@@ -1,1 +1,0 @@
-1.     "GENERIC_CHART_AXES": True en FEATURE_FLAGS
