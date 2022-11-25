@@ -120,9 +120,7 @@ RUN cd /app \
   && pip install -e . \
   && flask fab babel-compile --target superset/translations
 
-# basic template mod
-COPY ./basic.html /app/superset/templates/superset/basic.html
-
+# RUN pip install --force-reinstall git+https://github.com/benoitc/gunicorn.git@master
 
 COPY ./superset/docker/run-server.sh /usr/bin/
 
