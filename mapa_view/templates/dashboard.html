@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<main role="main">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="https://argentina.gob.ar">Inicio</a></li>
+      <li><a href="https://www.argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
+      <li><a href="https://www.argentina.gob.ar/desarrollosocial/informacionsocialestrategica">Información Social
+          Estratégica</a></li>
+      <li><a href="/mapa">Mapa de Inversión Social</a></li>
+    </ol>
+  </div>
+</main>
+{% endblock %}
+
+{% block content %}
+<div class="container" id="graph" data-eje="{{ data[0] }}" data-dashboard="{{ data[1] }}"></div>
+<style>
+  #graph iframe {
+    margin-top: 10px;
+    width: 100%;
+    border: 0;
+  }
+</style>
+<script src="https://unpkg.com/@baldosa/embedded-sdk"></script>
+<script>
+
+const dashboardId = document.querySelector('#graph').dataset.dashboard;
+const ejeId = document.querySelector('#graph').dataset.eje
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+let size = params.size;
+
+
+function genBreadCrum(eje) {
+  dashboardData = eje.dashboards.filter(d => d.uuid === dashboardId)[0]
+  breadcrumClass = document.querySelector('.breadcrumb')
+  let tpl = `
+    <li><a href="/mapa#${eje.home_url}">${eje.eje}</a></li>
+    <li class="active"><span>${dashboardData.title}</span></li>
+  `
+  breadcrumClass.innerHTML += tpl
+  return dashboardData.size
+}
+
+async function getGuestToken() {
+  let response = await fetch(`/mapa/token/${dashboardId}`);
+  let data = await response.json()
+  return data
+}
+
+async function loadDashboard() {
+  const dashboard = await supersetEmbeddedSdk.embedDashboard({
+    id: dashboardId, // given by the Superset embedding UI
+    supersetDomain: 'http://localhost:8088',
+    mountPoint: document.getElementById('graph'), // any html element that can contain an iframe
+    fetchGuestToken: () => getGuestToken(),
+    dashboardUiConfig: { hideTitle: true, hideTab: true, hideChartControls: true } // dashboard UI config: hideTitle, hideTab, hideChartControls (optional)
+  })
+  // const size = await dashboard.getScrollSize();
+  const frame = document.querySelector('iframe')
+  return frame
+}
+
+function start() {
+  return loadDashboard()
+
+}
+
+// Call start
+(async () => {
+  await start()
+  .then(res => {
+    fetch('https://raw.githubusercontent.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/main/dashboards.json')
+      .then(res => res.json())
+      .then((out) => {
+        let ejeData = out.filter(d => d.home_url === ejeId)[0]
+        genBreadCrum(ejeData);
+      })
+      .catch(err => console.error(err));
+  })
+})();
+
+
+
+let sizeTimeout
+sizeTimeout = setTimeout(() => {
+  console.log('start timeout')
+  const frame = document.querySelector('iframe')
+  let height = frame.contentWindow.document.body.offsetHeight
+  console.log(size)
+  frame.style.height = `${size}px`;
+  if (height > 500) {
+    height = parseInt(frame.contentWindow.document.body.offsetHeight)
+    stopResize();
+    console.log(frame.contentWindow.document.body.offsetHeight)
+    console.log('stop timeout')
+  }
+}, 3000);
+
+function stopResize() {
+  clearTimeout(sizeTimeout);
+}
+
+</script>
+{% endblock %}
+</main>

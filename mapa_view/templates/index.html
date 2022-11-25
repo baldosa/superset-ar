@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<main role="main">
+  <section class="jumbotron"
+    style="background-image: url('https://www.argentina.gob.ar/sites/default/files/styles/jumbotron/public/2020/08/7119_-_web_-_fondos_politicas_mds.jpg');">
+    <div class="jumbotron_bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ol class="breadcrumb pull-left">
+              <li><a href="https://argentina.gob.ar">Argentina</a></li>
+              <li><a href="https://www.argentina.gob.ar/desarrollosocialr">Ministerio de Desarrollo social</a></li>
+              <li><a href="https://www.argentina.gob.ar/desarrollosocial/informacionsocialestrategica">Información
+                  social estratégica</a></li>
+              <li class="active"><span>Mapa de inversión social</span></li>
+            </ol>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="jumbotron_body">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+            <h1>Mapa de Inversión Social</h1>
+            <p>Accedé de manera interactiva a información sobre los principales programas que implementa el
+              Ministerio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+ 
+</main>
+{% endblock %}
+
+{% block content %}
+<style>
+  /*desktopView es el contenedor del home para vista de desktop, es visible en resoluciones grandes, con display block*/
+  .container.desktopView {
+    display: block;
+  }
+
+  /*mobileView es el contenedor del home para vista de celulares, es invisible en resoluciones grandes, con display none*/
+  .container.mobileView {
+    display: none;
+  }
+
+  /*esto hace que no aparezca la doble barra de scroll en el home*/
+  #MARKDOWN-uiddnxNhkU .resizable-container {
+    height: auto !important;
+  }
+
+  /*quita subrayado de links*/
+  .panel a,
+  .panel a:hover {
+    text-decoration: none;
+  }
+
+  /*mantiene color blanco de los tabs del menu derecho de edición de dashboards*/
+  .ant-tabs {
+    background-color: #fff;
+  }
+
+  /*Tamaño de links de cada item de link*/
+  .panel h3,
+  .panel h3 a {
+    color: #333;
+    font-weight: bold;
+    font-size: 1.25rem !important;
+  }
+
+  /*tamaño de titulo de grupo de items*/
+  .h3,
+  h3 {
+    font-size: 1.75rem !important;
+  }
+
+  /*ajuste para celulares*/
+  @media only screen and (max-width: 790px) {
+
+    /*hace invisible el contenedor de desktop*/
+    .container.desktopView {
+      display: none;
+    }
+
+    /*hace visible el contenedor de mobile*/
+    .container.mobileView {
+      display: block;
+    }
+  }
+</style>
+
+<!--contenedor de vista para escritorio-->
+<div class="container desktopView">
+</div>
+
+<!--contenedor de vista para móviles-->
+<div class="container mobileView">
+</div>
+
+<script>
+
+  function genBlocks(block, divClass) {
+
+    let dashboards = ``
+    block.dashboards.forEach(element => {
+      let dashboardtpl = `
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <a class="panel panel-default" href="/mapa/dashboard/${block.home_url}/${element.uuid}?size=${element.size}">
+        <div class="panel-body">
+          <div class="media">
+            <div class="media-left padding-20">
+              <i class="fa ${element.icon} fa-fw fa-2x text-primary"></i>
+            </div>
+            <div class="media-body">
+              <h3>${element.title}</h3>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    `
+      dashboards += dashboardtpl
+    });
+    let tpl = `
+    <h3 id="${block.homeurl}">${block.eje}</h3>
+    <div class="row panels-row">
+      ${dashboards}
+    </div>
+    <br class="separador-ejes">
+  `
+    divClass.innerHTML += tpl
+
+  }
+
+  fetch('https://raw.githubusercontent.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/main/dashboards.json')
+    .then(res => res.json())
+    .then((out) => {
+      let desktopClass = document.querySelector('.desktopView')
+      let dashboardsDesktop = out.filter(d => d.tipo === 'desktop')
+      dashboardsDesktop.forEach(el => genBlocks(el, desktopClass))
+
+
+      let mobileClass = document.querySelector('.mobileView')
+      let dashboardsMobile = out.filter(d => d.tipo === 'mobile')
+      dashboardsMobile.forEach(el => genBlocks(el, mobileClass))
+
+    })
+    .catch(err => console.error(err));
+
+</script>
+
+{% endblock %}
+</main>
