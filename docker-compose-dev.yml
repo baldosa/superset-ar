@@ -11,15 +11,18 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: superset
-      POSTGRES_PASSWORD: superset
-      POSTGRES_USER: superset
+      POSTGRES_PASSWORD: ${POSTGRES_USER}
+      POSTGRES_USER: ${POSTGRES_PASSWORD}
     ports:
-      - "5433:5433"
+      - "5432:5432"
     volumes:
       - postgres_superset:/var/lib/postgresql/data
+    env_file:
+      - .env
 
   superset:
-    build: .
+    # build: .
+    image: baldosa/superset-ar:test
     restart: unless-stopped
     depends_on:
       - redis
@@ -28,7 +31,9 @@ services:
       - "8088:8088"
     volumes:
       - ./superset_config.py:/app/pythonpath/superset_config.py
-
+      - ./mapa_view:/app/pythonpath/mapa_view
+    env_file:
+      - .env
 volumes:
   redis:
   postgres_superset:
