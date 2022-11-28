@@ -55,7 +55,7 @@ async function getGuestToken() {
 async function loadDashboard() {
   const dashboard = await supersetEmbeddedSdk.embedDashboard({
     id: dashboardId, // given by the Superset embedding UI
-    supersetDomain: 'http://localhost:8088',
+    supersetDomain: window.location.origin,
     mountPoint: document.getElementById('graph'), // any html element that can contain an iframe
     fetchGuestToken: () => getGuestToken(),
     dashboardUiConfig: { hideTitle: true, hideTab: true, hideChartControls: true } // dashboard UI config: hideTitle, hideTab, hideChartControls (optional)
