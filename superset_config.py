@@ -64,8 +64,9 @@ WELCOME_PAGE_REDIRECT_DEFAULT="/mapa"
 WELCOME_PAGE_REDIRECT_ADMIN="/dashboard/list/"
 
 WELCOME_PAGE_REDIRECT_BY_ROLE={
-  'Gamma': '/dashboard/list/',
-  'MDS': '/superset/dashboard/84/',
+  'Alpha': '/dashboard/list/',
+  'Gamma': '/superset/dashboard/86/',
+  'externo': '/superset/dashboard/86/',
 }
 
 
@@ -130,4 +131,6 @@ FEATURE_FLAGS = {
     "DISABLE_LEGACY_DATASOURCE_EDITOR": False,
 }
 
-PUBLIC_ROLE_LIKE = "Gamma"
+PUBLIC_ROLE_LIKE = "vistaPublica"
+WTF_CSRF_ENABLED = False
+CSV_EXPORT = {"encoding": "cp1252", "sep": ";", "decimal": ","}
