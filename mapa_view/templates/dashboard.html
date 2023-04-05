@@ -10,6 +10,7 @@
       <li><a href="https://www.argentina.gob.ar/desarrollosocial/informacionsocialestrategica">Información Social
           Estratégica</a></li>
       <li><a href="/mapa">Mapa de Inversión Social</a></li>
+      <li></li>
     </ol>
   </div>
 </main>
@@ -77,8 +78,8 @@ function start() {
     fetch('https://raw.githubusercontent.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/main/dashboards.json')
       .then(res => res.json())
       .then((out) => {
-        let ejeData = out.filter(d => d.home_url === ejeId)[0]
-        genBreadCrum(ejeData);
+        // let ejeData = out.filter(d => d.home_url === ejeId)[0]
+        // genBreadCrum(ejeData);
       })
       .catch(err => console.error(err));
   })
