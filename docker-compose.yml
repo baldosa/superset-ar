@@ -21,7 +21,7 @@ services:
       - .env
 
   superset:
-    image: baldosa/superset-ar:latest
+    image: baldosa/superset:latest
     restart: unless-stopped
     depends_on:
       - redis
