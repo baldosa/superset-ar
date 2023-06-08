@@ -100,7 +100,7 @@ def make_session_permanent():
     '''
     session.permanent = True
 
-# set up max age of session to 365 days 
+# set up max age of session to 365 days
 PERMANENT_SESSION_LIFETIME = timedelta(days=365)
 def FLASK_APP_MUTATOR(app: Flask) -> None:
     app.before_request_funcs.setdefault(None, []).append(make_session_permanent)
@@ -134,3 +134,9 @@ FEATURE_FLAGS = {
 PUBLIC_ROLE_LIKE = "vistaPublica"
 WTF_CSRF_ENABLED = False
 CSV_EXPORT = {"encoding": "cp1252", "sep": ";", "decimal": ","}
+# Dashboard embedding
+GUEST_ROLE_NAME = "vistaPublica"
+GUEST_TOKEN_JWT_SECRET = "q8u32wiodhjakl12uas"
+GUEST_TOKEN_JWT_ALGO = "HS256"
+GUEST_TOKEN_HEADER_NAME = "X-GuestToken"
+GUEST_TOKEN_JWT_EXP_SECONDS = 300  # 5 minutes
