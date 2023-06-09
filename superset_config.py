@@ -75,20 +75,20 @@ WELCOME_PAGE_REDIRECT_BY_ROLE={
 class SupersetDashboardIndexView(IndexView):
     @expose("/")
     def index(self) -> FlaskResponse:
-        from superset.views.base import is_user_admin
+        # from superset.views.base import is_user_admin
         from superset import security_manager
         user_roles = security_manager.get_user_roles()
 
-        if is_user_admin():
-            return redirect(WELCOME_PAGE_REDIRECT_ADMIN)
-        else:
-            for role in user_roles:
-                role_name = role.name
+        # if is_user_admin():
+        #     return redirect(WELCOME_PAGE_REDIRECT_ADMIN)
+        # else:
+        for role in user_roles:
+            role_name = role.name
 
-                if role_name in WELCOME_PAGE_REDIRECT_BY_ROLE:
-                    return redirect(WELCOME_PAGE_REDIRECT_BY_ROLE[role_name])
+            if role_name in WELCOME_PAGE_REDIRECT_BY_ROLE:
+                return redirect(WELCOME_PAGE_REDIRECT_BY_ROLE[role_name])
 
-            return redirect(WELCOME_PAGE_REDIRECT_DEFAULT)
+        return redirect(WELCOME_PAGE_REDIRECT_DEFAULT)
 
 FAB_INDEX_VIEW = f"{SupersetDashboardIndexView.__module__}.{SupersetDashboardIndexView.__name__}"
 
