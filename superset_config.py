@@ -5,9 +5,11 @@ from flask import Flask, redirect, session
 from flask_appbuilder import expose, IndexView
 
 from superset.superset_typing import FlaskResponse
+from superset.extensions import appbuilder
 
 from datetime import timedelta
 from mapa_view.views import mapa_bp
+from tools_view.views import ToolsView
 
 # mapbox api
 MAPBOX_API_KEY = os.getenv('MAPBOX_API_KEY')
@@ -57,7 +59,9 @@ PROXY_FIX_CONFIG = {"x_for": 1, "x_proto": 1, "x_host": 1, "x_port": 1, "x_prefi
 HTTP_HEADERS = {'X-Frame-Options': 'ALLOWALL'}
 
 # custom path público
-BLUEPRINTS = [mapa_bp]
+BLUEPRINTS = [
+    mapa_bp,
+]
 
 # redirect al dashboard base
 WELCOME_PAGE_REDIRECT_DEFAULT="/mapa"
@@ -103,7 +107,12 @@ def make_session_permanent():
 # set up max age of session to 365 days
 PERMANENT_SESSION_LIFETIME = timedelta(days=365)
 def FLASK_APP_MUTATOR(app: Flask) -> None:
+    
     app.before_request_funcs.setdefault(None, []).append(make_session_permanent)
+
+    # tools view
+    appbuilder.add_view_no_menu(ToolsView())
+
 
 # base url
 # This is for internal use, you can keep http
@@ -140,3 +149,4 @@ GUEST_TOKEN_JWT_SECRET = "q8u32wiodhjakl12uas"
 GUEST_TOKEN_JWT_ALGO = "HS256"
 GUEST_TOKEN_HEADER_NAME = "X-GuestToken"
 GUEST_TOKEN_JWT_EXP_SECONDS = 300  # 5 minutes
+

@@ -2,6 +2,12 @@ from flask import Blueprint, render_template, jsonify
 import json
 import requests
 import os
+from flask_appbuilder.security.decorators import has_access
+# greeting.py
+from flask_appbuilder.api import BaseApi, expose, protect
+
+
+
 # just a new blue print for processing new menu item
 mapa_bp = Blueprint(
     'mapa',
