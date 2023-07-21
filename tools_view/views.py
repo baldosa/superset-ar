@@ -1,5 +1,5 @@
 import os
-from flask import render_template, jsonify, request, send_file
+from flask import render_template, jsonify, request, Response
 from flask_appbuilder.security.decorators import has_access
 from flask_appbuilder import AppBuilder, expose, BaseView
 
@@ -14,10 +14,9 @@ class ToolsView(BaseView):
     @has_access
     def root(self):
         return render_template('tools/index.html')
-        # return template_dir
 
     @expose('/csv-exporter', methods=["GET", "POST"])
-    # @has_access
+    @has_access
     def csv_exporter(self): 
         if request.method == "GET":
             return render_template('tools/csv_exporter.html')
@@ -25,12 +24,14 @@ class ToolsView(BaseView):
         elif request.method == "POST":
             import pandas as pd
             from io import BytesIO
-            f = request.files["file"]
-            df = pd.read_excel(f)
+            df = pd.read_excel(request.files.get('file'))
             data = BytesIO()
             df.to_csv(data, index=False)
-            return send_file(data, download_name=f.filename, as_attachment=True )
-            # return 'memes'
+            headers = {
+                'Content-Disposition': 'attachment; filename=output.xlsx',
+                'Content-type': 'text/csv'
+            }
+            return Response(data.getvalue(), mimetype='text/csv', headers=headers)
 
 	
 
