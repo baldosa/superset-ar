@@ -1,0 +1,225 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/encode-fontface.css');
+@import url('https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/poncho.min.css');
+@import url('https://argob.github.io/poncho/node_modules/ar-poncho/dist/css/argentina.css');
+@import url('https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/icono-arg.css');
+/*ajuste título programa*/
+.tituloPrograma h3{
+font-weight:bold;
+margin: 0 !important;
+font-size: 25px !important;
+line-height: 30px !important;
+}
+/*ajuste visual chart fecha de actualización*/
+div[data-test-chart-name="Fecha de actualización"],
+div[data-test-chart-name="Fecha de actualización"] div{
+  height:51px !important;
+}
+div[data-test-chart-name="Fecha de actualización"] .chart-container{
+  height:18px;
+}
+div[data-test-chart-name="Fecha de actualización"] .header-line{
+font-size: 16px !important;
+font-weight: bold;
+margin-top: 8px;
+}
+/*ajuste visual chart período*/
+div[data-test-chart-name="Período"] table{
+  width:158px !important;
+  border-collapse:unset;
+}
+div[data-test-chart-name="Período"]  td{
+font-size: 16px !important;
+font-family: "Inter", Helvetica, Arial;
+background-color: white;
+visibility: visible;
+width: 75px !important;
+padding:0 5px !important;
+}
+div[data-test-chart-name="Período"]  td:first-child{
+border-right:1px solid #333333;
+}
+div[data-test-chart-name="Período"] thead{
+  display:none;
+}
+div[data-test-chart-name="Período"] .chart-header{
+  padding-left:5px;
+}
+div[data-test-chart-name="Período"] .dashboard-chart{
+  margin-top:8px;
+}
+/*charts de mi pieza con iconos*/
+#chart-id-65,
+#chart-id-66,
+#chart-id-67{
+  background:no-repeat left 9px transparent;
+  height:100px;
+}
+#chart-id-65 td:first-child,
+#chart-id-66 td:first-child,
+#chart-id-67 td:first-child{
+  width: 210px;
+}
+#chart-id-65{
+  background-image:url(/static/assets/images/mds/deficit-habitacional.svg);
+    margin-top:0px;
+}
+#chart-id-66{
+  background-image:url(/static/assets/images/mds/vivienda-familia.svg);
+}
+#chart-id-67{
+  background-image:url(/static/assets/images/mds/discapacidad.svg);
+}
+.ant-collapse-ghost {
+  display: none;
+}
+#chart-id-65 .header-title{
+height:50px !important;
+}
+slice_container {
+  height: 85px;
+}
+#chart-id-65 thead,
+#chart-id-66 thead,
+#chart-id-67 thead{
+  display:none;
+}
+#chart-id-65 td,
+#chart-id-66 td,
+#chart-id-67 td{
+  background-color: #ffffff !important;
+  font-size: 40px; 
+    visibility:visible;
+  font-family: "Inter", Helvetica, Arial !important;
+}
+#chart-id-65 td,
+#chart-id-66 td,
+#chart-id-67 td{
+  background-color: transparent !important;
+  font-size: 27px;   
+  padding:30px 5px;
+}
+#chart-id-65 td,
+#chart-id-66 td,
+#chart-id-67 td{
+  visibility:visible;
+}
+#chart-id-65 div,
+#chart-id-66 div,
+#chart-id-67 div{
+  height:68px !important;
+}
+#chart-id-65 tr,
+#chart-id-66 tr,
+#chart-id-67 tr{
+  background-color: transparent !important;
+}
+.css-1gsicwv td,
+.css-zqq9i7 td{
+  min-width: 0 !important;
+}
+#chart-id-65 td.css-zqq9i7:first-of-type,
+#chart-id-66 td.css-zqq9i7:first-of-type,
+#chart-id-67 td.css-zqq9i7:first-of-type{
+  width:70% !important;
+}
+#chart-id-65 td.css-zqq9i7:last-of-type,
+#chart-id-66 td.css-zqq9i7:last-of-type,
+#chart-id-67 td.css-zqq9i7:last-of-type{
+  width:30% !important;
+  color: #999;
+}
+#chart-id-65 .header-title{
+height:50px !important;
+}
+slice_container {
+  height: 85px;
+}
+/*esconde "totals" y escribe "total" en tablas*/
+#chart-id-12 tfoot th,
+#chart-id-26 tfoot th,
+#chart-id-121 tfoot th,
+#chart-id-58 tfoot th{
+  position: absolute;
+  visibility: hidden;
+}
+#chart-id-12 tfoot th:before,
+#chart-id-26 tfoot th:before,
+#chart-id-121 tfoot th:before,
+#chart-id-58 tfoot th:before{
+  content: "Total";
+  visibility: visible;
+}
+/*esconde encabezado chart de filtro de provincia*/
+div[data-test-chart-id="157"] div.chart-header,
+div[data-test-chart-id="158"] div.chart-header,
+div[data-test-chart-id="159"] div.chart-header,
+div[data-test-chart-id="160"] div.chart-header,
+div[data-test-chart-id="161"] div.chart-header,
+div[data-test-chart-id="162"] div.chart-header,
+div[data-test-chart-id="163"] div.chart-header,
+div[data-test-chart-id="164"] div.chart-header,
+div[data-test-chart-id="165"] div.chart-header,
+div[data-test-chart-id="166"] div.chart-header,
+div[data-test-chart-id="167"] div.chart-header,
+div[data-test-chart-id="168"] div.chart-header,
+div[data-test-chart-id="169"] div.chart-header,
+div[data-test-chart-id="209"] div.chart-header,
+div[data-test-chart-id="210"] div.chart-header,
+div[data-test-chart-id="211"] div.chart-header,
+div[data-test-chart-id="212"] div.chart-header,
+div[data-test-chart-id="213"] div.chart-header,
+div[data-test-chart-id="214"] div.chart-header,
+div[data-test-chart-id="222"] div.chart-header,
+div[data-test-chart-id="438"] div.chart-header{
+  display:none;
+}
+/*esconde texto por defecto de select de filtro provincia*/
+.Select__placeholder.css-miy1le-placeholder{
+  visibility: hidden;
+}
+/*coloca "seleccionar" en select filtro provincia*/
+.Select__placeholder.css-miy1le-placeholder::before{
+  content:"Seleccionar";
+  visibility: visible;
+}
+/*cambia color de líneas divisorias de provincia en mapa*/
+.superset-legacy-chart-country-map path.region {
+  stroke: rgb(0, 69, 41) !important;
+}
+/*ajuste de margenes de chart tabla*/
+.superset-chart-table thead div,
+.superset-chart-table thead div span{
+  width:100%;
+}
+.superset-chart-table td{
+ padding-right:15px !important;
+}
+/*ajusta el valor total de las tablas, para que se vea entero*/
+#chart-id-26.superset-chart-table table tfoot td:last-child strong,
+#chart-id-58.superset-chart-table table tfoot td:last-child strong{
+    padding-right: 14px !important;
+}
+/*ajueste del pie del mapa, para que no se corte el mapa abajo*/
+.dashboard-component-chart-holder.fade-out {
+    padding-bottom: 0px !important;
+}
+/*esconde texto cuando una columna del dashboard está vacía*/
+.grid-column--empty::before {
+  content: ;
+}
+/*esconde contrtoles de charts de fechas*/
+div[data-test-chart-name="Fecha de actualización"] .header-controls,
+div[data-test-chart-name="Período"] .header-controls{
+display:none !important;
+}
+/*cambia color de líneas divisorias de provincia en mapa*/
+.superset-legacy-chart-country-map path.region {
+stroke: rgb(132, 181, 221) !important;
+}
+
+/* remuevo label de PROVINCIA */
+label[for=LABEL-provincia_mapa], label[for=LABEL-provincia] {
+  display: none;
+}
