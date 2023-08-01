@@ -11,25 +11,36 @@ margin: 0 !important;
 font-size: 25px !important;
 line-height: 30px !important;
 }
+
+
+/*esconde contrtoles de charts de fechas*/
+div[data-test-chart-name*="fecha_actualiza"] .header-controls,
+div[data-test-chart-name*="periodo"] .header-controls{
+display:none !important;
+}
+
 /*ajuste visual chart fecha de actualización*/
-div[data-test-chart-name="Fecha de actualización"],
-div[data-test-chart-name="Fecha de actualización"] div{
+div[data-test-chart-name*="fecha_actualiza"],
+div[data-test-chart-name*="fecha_actualiza"] div {
   height:51px !important;
 }
-div[data-test-chart-name="Fecha de actualización"] .chart-container{
+div[data-test-chart-name*="fecha_actualiza"],
+div[data-test-chart-name*="fecha_actualiza"] div  .chart-container{
   height:18px;
 }
-div[data-test-chart-name="Fecha de actualización"] .header-line{
-font-size: 16px !important;
-font-weight: bold;
-margin-top: 8px;
+div[data-test-chart-name*="fecha_actualiza"] .header-line{
+  font-size: 16px !important;
+  font-weight: bold;
+  margin-top: 8px;
 }
+
+
 /*ajuste visual chart período*/
-div[data-test-chart-name="Período"] table{
+div[data-test-chart-name*="periodo"] table{
   width:158px !important;
   border-collapse:unset;
 }
-div[data-test-chart-name="Período"]  td{
+div[data-test-chart-name*="periodo"]  td{
 font-size: 16px !important;
 font-family: "Inter", Helvetica, Arial;
 background-color: white;
@@ -37,18 +48,29 @@ visibility: visible;
 width: 75px !important;
 padding:0 5px !important;
 }
-div[data-test-chart-name="Período"]  td:first-child{
+div[data-test-chart-name*="periodo"]  td:first-child{
 border-right:1px solid #333333;
 }
-div[data-test-chart-name="Período"] thead{
+div[data-test-chart-name*="periodo"] thead{
   display:none;
 }
-div[data-test-chart-name="Período"] .chart-header{
+div[data-test-chart-name*="periodo"] .chart-header{
   padding-left:5px;
 }
-div[data-test-chart-name="Período"] .dashboard-chart{
+div[data-test-chart-name*="periodo"] .dashboard-chart{
   margin-top:8px;
 }
+
+
+/* anchor link container */
+.anchor-link-container {
+  visibility: hidden!important;
+}
+
+.short-link-trigger {
+  visibility: hidden!important;
+}
+
 /*charts de mi pieza con iconos*/
 #chart-id-65,
 #chart-id-66,
