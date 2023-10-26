@@ -17,13 +17,16 @@
 {% block content %}
 <div class="container" id="graph" data-eje="{{ data[0] }}" data-dashboard="{{ data[1] }}"></div>
 <style>
+  .container {
+    width: 95%!important;
+  }
   #graph iframe {
     margin-top: 10px;
     width: 100%;
     border: 0;
   }
 </style>
-<script src="https://unpkg.com/@baldosa/embedded-sdk"></script>
+<script src="https://unpkg.com/@superset-ui/embedded-sdk"></script>
 <script>
 
 const dashboardId = document.querySelector('#graph').dataset.dashboard;
@@ -57,7 +60,7 @@ async function loadDashboard() {
     supersetDomain: window.location.origin,
     mountPoint: document.getElementById('graph'), // any html element that can contain an iframe
     fetchGuestToken: () => getGuestToken(),
-    dashboardUiConfig: { hideTitle: true, hideTab: true, hideChartControls: true } // dashboard UI config: hideTitle, hideTab, hideChartControls (optional)
+    dashboardUiConfig: { hideTitle: true, hideTab: true, hideChartControls: false } // dashboard UI config: hideTitle, hideTab, hideChartControls (optional)
   })
   // const size = await dashboard.getScrollSize();
   const frame = document.querySelector('iframe')
