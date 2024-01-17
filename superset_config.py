@@ -11,6 +11,9 @@ from datetime import timedelta
 from mapa_view.views import mapa_bp
 from tools_view.views import ToolsView
 
+FAVICONS = [{"href": "https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/favicon.ico"}]
+
+
 # mapbox api
 MAPBOX_API_KEY = os.getenv('MAPBOX_API_KEY')
 
@@ -67,12 +70,13 @@ BLUEPRINTS = [
 WELCOME_PAGE_REDIRECT_DEFAULT="/mapa"
 WELCOME_PAGE_REDIRECT_ADMIN="/dashboard/list/"
 
-WELCOME_PAGE_REDIRECT_BY_ROLE={
-  'Alpha': '/dashboard/list/',
-  'Gamma': '/superset/dashboard/86/',
-  'externo': '/superset/dashboard/86/',
+WELCOME_PAGE_REDIRECT_BY_ROLE = {
+    "Alpha": "/dashboard/list/",
+    "Gamma": "/superset/dashboard/86/",
+    "externo": "/superset/dashboard/86/",
+    "Usuario": "/superset/dashboard/86/",
+    "Externo": "/superset/dashboard/86/",
 }
-
 
 # Change welcome page
 # https://stackoverflow.com/a/69930056/1760643
@@ -107,7 +111,7 @@ def make_session_permanent():
 # set up max age of session to 365 days
 PERMANENT_SESSION_LIFETIME = timedelta(days=365)
 def FLASK_APP_MUTATOR(app: Flask) -> None:
-    
+
     app.before_request_funcs.setdefault(None, []).append(make_session_permanent)
 
     # tools view
@@ -149,4 +153,12 @@ GUEST_TOKEN_JWT_SECRET = "q8u32wiodhjakl12uas"
 GUEST_TOKEN_JWT_ALGO = "HS256"
 GUEST_TOKEN_HEADER_NAME = "X-GuestToken"
 GUEST_TOKEN_JWT_EXP_SECONDS = 300  # 5 minutes
+HTML_SANITIZATION = False
 
+# Override the default d3 locale format
+D3_FORMAT = {
+    "decimal": ",",           # - decimal place string (e.g., ".").
+    "thousands": ".",         # - group separator string (e.g., ",").
+    "grouping": [3],          # - array of group sizes (e.g., [3]), cycled as needed.
+    "currency": ["$", ""]     # - currency prefix/suffix strings (e.g., ["$", ""])
+}

@@ -13,7 +13,8 @@ mapa_bp = Blueprint(
     'mapa',
     __name__,
     template_folder='templates',
-    static_url_path='/static/report')
+    static_url_path='/static/',
+    static_folder='static')
 
 # routes
 @mapa_bp.route('/mapa')
@@ -56,3 +57,12 @@ def guest_token(dashboard_id):
 def dashboard(eje, id):
     
     return render_template('dashboard.html', data=[eje, id])
+
+
+@mapa_bp.route('/mapa/dashboards.json')
+def dashboards_json():
+    with open(os.getenv('DASHBOARD_JSON_PATH'), 'rt') as f:
+        data = f.read()
+        data = json.loads(data)
+
+        return jsonify(data)

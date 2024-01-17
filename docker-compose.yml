@@ -21,7 +21,7 @@ services:
       - .env
 
   superset:
-    image: baldosa/superset:latest
+    image: baldosa/superset:test
     restart: unless-stopped
     depends_on:
       - redis
@@ -32,6 +32,7 @@ services:
       - ./superset_config.py:/app/pythonpath/superset_config.py
       - ./mapa_view:/app/pythonpath/mapa_view
       - ./tools_view:/app/pythonpath/tools_view
+      - ./dashboards.json:/tmp/dashboards.json
     env_file:
       - .env
 volumes:

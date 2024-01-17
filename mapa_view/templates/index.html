@@ -9,9 +9,13 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <ol class="breadcrumb device-breadcrumb" role="navigation" aria-label="Migas de pan"><li class="device-breadcrumb__hidden-item"><a href="/">Inicio</a></li>
-              <li class="device-breadcrumb__toggle-item"><a href="https://www.argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
-              <li class="device-breadcrumb__last-visible-item"><a href="https://www.argentina.gob.ar/desarrollosocial/informacionsocialestrategica">Información social estratégica</a></li>
+            <ol class="breadcrumb device-breadcrumb" role="navigation" aria-label="Migas de pan">
+              <li class="device-breadcrumb__hidden-item"><a href="/">Inicio</a></li>
+              <li class="device-breadcrumb__toggle-item"><a
+                  href="https://www.argentina.gob.ar/desarrollosocial">Ministerio de Desarrollo Social</a></li>
+              <li class="device-breadcrumb__last-visible-item"><a
+                  href="https://www.argentina.gob.ar/desarrollosocial/informacionsocialestrategica">Información social
+                  estratégica</a></li>
               <li class="active device-breadcrumb__hidden-item" aria-current="page">Mapa de inversión social</li>
             </ol>
 
@@ -32,7 +36,7 @@
     </div>
     <div class="overlay"></div>
   </section>
- 
+
 </main>
 {% endblock %}
 
@@ -136,9 +140,12 @@
 
   }
 
-  fetch('https://raw.githubusercontent.com/datos-desarrollosocial-nacion/metadata-mapa-de-inversion-social/main/dashboards.json')
+  fetch('/mapa/dashboards.json')
     .then(res => res.json())
     .then((out) => {
+
+
+
       let desktopClass = document.querySelector('.desktopView')
       let dashboardsDesktop = out.filter(d => d.tipo === 'desktop')
       dashboardsDesktop.forEach(el => genBlocks(el, desktopClass))
