@@ -38,7 +38,8 @@
 
   <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/encode-fontface.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/poncho.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://argob.github.io/poncho/node_modules/ar-poncho/dist/css/argentina.css">
+  <link rel="stylesheet"
+    href="https://www.argentina.gob.ar/profiles/argentinagobar/themes/contrib/poncho/css/argentina.css">
   <link href="https://cdn.jsdelivr.net/gh/argob/poncho@master/dist/css/icono-arg.css" rel="stylesheet">
   <!-- FIN PONCHO -->
 
@@ -59,51 +60,37 @@
 <body>
 
   <header>
-    {{ url_for('static', filename='test.txt') }}
-    <nav class="navbar navbar-top navbar-default bg-celeste-argentina">
+    <nav class="navbar navbar-top navbar-default border-bottom-amarillo">
       <div class="container">
         <div>
-          <div class="navbar-header"> <a class="navbar-brand" href="https://argentina.gob.ar" id="navbar-brand"
-              aria-label="Argentina.gob.ar Presidencia de la Nación"> <img
-                src="https://argentina.gob.ar/profiles/argentinagobar/themes/argentinagobar/argentinagobar_theme/logo_argentina-blanco.svg"
-                alt="Argentina.gob.ar" height="50" width="254"> </a> <a
-              class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar"
-              aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina fa-fw"></i></a> <a
-              onclick="jQuery('.navbar.navbar-top').addClass('state-search');"
-              class="btn btn-mi-argentina btn-login visible-xs" href="#" aria-labelledby="edit-keys"><span
-                class="fa fa-search fa-fw"></span></a></div>
-          <div class="nav navbar-nav navbar-right hidden-xs"> <a
-              onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/" id="navbar-brand" aria-label="Argentina.gob.ar - Presidencia de la Nación">
+              <img src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/logo_argentina-azul.svg"
+                alt="Argentina.gob.ar" height="50" width="254">
+            </a>
+            <a class="btn btn-mi-argentina btn-login visible-xs" href="https://mi.argentina.gob.ar"
+              aria-label="Ingresar a Mi Argentina"><i class="icono-arg-mi-argentina fa-fw"></i><span class="sr-only">Ir
+                a Mi Argentina</span></a>
+
+          </div>
+          <div class="nav navbar-nav navbar-right hidden-xs">
+            <a onclick="jQuery('.navbar.navbar-top').removeClass('state-search');" href="#"
               class="btn btn-link btn-search-reset visible-xs">
               <div class="fa fa-times"></div>
             </a>
-            <div id="cd-login"> <a href="https://mi.argentina.gob.ar" id="btn-mi-argentina"
-                class="btn btn-mi-argentina hidden-xs" aria-label="Ingresar a Mi Argentina">
-                <div class="text-primary pull-left" style="margin-right: 8px;"></div>miArgentina
-              </a></div>
-            <div class="pull-left">
-              <form class="main-form" role="search" action="/buscar" method="post"
-                id="apachesolr-search-custom-page-search-form" accept-charset="UTF-8">
-                <div><input type="hidden" name="form_build_id"
-                    value="form-GZYB2dJiQ2tWD2up_kSSDKknoo8OKU7xSHq-uNTofyg"><input type="hidden" name="form_id"
-                    value="apachesolr_search_custom_page_search_form">
-                  <div style="display:none;">
-                    <div class="form-item form-item-tarro-de-miel form-type-textfield form-group"> <label
-                        class="control-label" for="edit-tarro-de-miel">Dejar en blanco</label><input
-                        class="form-control form-text" type="text" id="edit-tarro-de-miel" name="tarro_de_miel" value=""
-                        size="60" maxlength="128"></div>
-                  </div>
-                  <div class="input-group"> <label class="sr-only" for="edit-keys">Buscar en el sitio</label><input
-                      placeholder="Buscar trámites, servicios o áreas" id="edit-keys"
-                      class="input-search form-control form-text" aria-label="Buscar trámites, servicios o áreas"
-                      type="text" name="keys" value="" size="20" maxlength="255"><span class="input-group-btn"><button
-                        class="bg-white btn-search-reset btn btn-default form-submit" aria-labelledby="edit-keys"
-                        aria-label="Buscar" type="submit" id="edit-submit" name="op"
-                        value="<i class=&quot;fa fa-search text-primary&quot;></i>"><i
-                          class="fa fa-search text-primary"></i></button></span></div>
-                </div>
-              </form>
+            <div id="cd-login">
+
+              <a href="https://mi.argentina.gob.ar/" id="btn-mi-argentina" class="btn btn-primary hidden-xs"
+                aria-label="Ingresar a Mi Argentina">Mi Argentina</a>
             </div>
+            <!-- <section id="block-argentinagobar-search-apache-solr-search-navbar" class="block block-argentinagobar-search clearfix"> -->
+            <div class="pull-left">
+            </div>
+
+            <!-- </section> -->
+            <!-- Pablo -->
+            <!-- <a href="https://mi.argentina.gob.ar" class="btn btn-link hidden-xs" aria-label="Ingresar a Mi Argentina">
+                  <i class="icono-arg-mi-argentina"></i>Mi Argentina</a> -->
           </div>
         </div>
       </div>
@@ -140,12 +127,11 @@
             <section id="block-menu-menu-footer-1" class="block block-menu clearfix">
               <h2 class="block-title h3 section-title h3 section-title">Trámites</h2>
               <ul class="menu nav">
-                <li class="first leaf"><a href="https://argentina.gob.ar/turnos">Turnos</a></li>
-                <li class="leaf"><a
-                    href="https://argentina.gob.ar/jefatura/innovacion-publica/innovacion-administrativa/tramites-distancia-tad">Trámites
-                    a distancia</a></li>
-                <li class="last leaf"><a href="https://argentina.gob.ar/miargentina/mesadeayuda">Atención a la
-                    ciudadanía</a></li>
+                <li class="first leaf"><a href="https://www.argentina.gob.ar/turnos">Turnos</a></li>
+                <li class="leaf"><a href="https://www.argentina.gob.ar/tramites-distancia-tad">Trámites a distancia</a>
+                </li>
+                <li class="last leaf"><a href="https://www.argentina.gob.ar/miargentina/mesadeayuda">Atención al
+                    ciudadano</a></li>
               </ul>
             </section>
           </div>
@@ -155,11 +141,10 @@
             <section id="block-menu-menu-footer-2" class="block block-menu clearfix">
               <h2 class="block-title h3 section-title h3 section-title">Acerca de la República Argentina</h2>
               <ul class="menu nav">
-                <li class="first leaf"><a href="https://argentina.gob.ar/pais">Nuestro país</a></li>
-                <li class="leaf"><a href="https://argentina.gob.ar/normativa">Leyes argentinas</a></li>
-                <li class="leaf"><a href="https://argentina.gob.ar/organismos">Organismos</a></li>
-                <li class="last leaf"><a href="https://argentina.gob.ar/jefatura/mapa-del-estado">Mapa del Estado</a>
-                </li>
+                <li class="first leaf"><a href="#">Leyes argentinas</a></li>
+                <li class="leaf"><a href="https://www.argentina.gob.ar/normativa">Organismos</a></li>
+                <li class="last leaf"><a href="https://www.argentina.gob.ar/desregulacion/mapa-del-estado">Mapa del
+                    Estado</a></li>
               </ul>
             </section>
           </div>
@@ -169,10 +154,10 @@
             <section id="block-menu-menu-footer-3" class="block block-menu clearfix">
               <h2 class="block-title h3 section-title h3 section-title">Acerca de Argentina.gob.ar</h2>
               <ul class="menu nav">
-                <li class="first leaf"><a href="https://argentina.gob.ar/acerca">Acerca de este sitio</a></li>
-                <li class="leaf"><a href="https://argentina.gob.ar/terminos-y-condiciones">Términos y condiciones</a>
-                </li>
-                <li class="last leaf"><a href="https://argentina.gob.ar/sugerencias">Sugerencias</a></li>
+                <li class="first leaf"><a href="https://www.argentina.gob.ar/acerca">Acerca de este sitio</a></li>
+                <li class="leaf"><a href="https://www.argentina.gob.ar/terminos-y-condiciones">Términos y
+                    condiciones</a></li>
+                <li class="last leaf"><a href="https://www.argentina.gob.ar/sugerencias">Contacto</a></li>
               </ul>
             </section>
           </div>
@@ -182,19 +167,7 @@
     <div class="container-fluid">
       <div class="row sub-footer">
         <div class="container">
-          <div class="col-sm-6 m-y-1 p-x-0"> <img class="image-responsive" height="80"
-              src="https://argob.github.io/poncho/plantillas/paginas-de-argentina/img/primerolagente.svg"
-              alt="Primero la gente"></div>
-          <section class="modulo-contacto">
-            <div class="container">
-              <div class="text-right">
-                <strong>Desarrollado con <a href="https://superset.apache.org">Apache Superset</a></strong><br>
-                <strong> <a href="mailto:datosabiertos@desarrollosocial.gob.ar">Contactanos</a></strong><br>
-                <strong> <a href="/login/">Iniciar sesión</a></strong>
-                </p>
-              </div>
-            </div>
-          </section>
+          <div class="col-sm-6 m-y-1 p-x-0"></div>
         </div>
       </div>
     </div>
